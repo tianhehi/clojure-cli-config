@@ -44,7 +44,14 @@
  ;; Alias definitions
 
  :aliases
- {;; ---------------------------------------------------
+ {:user {:extra-deps {tianhe/init-clj {:local/root "/Users/tianhe/.clojure/"}
+                      potemkin/potemkin {:mvn/version "0.4.7"}
+                      org.clj-commons/pretty {:mvn/version "3.2.0"}
+                      io.github.tonsky/clj-reload {:mvn/version "0.7.1"}
+                      djblue/portal {:mvn/version "0.57.3"}
+                      vvvvalvalval/scope-capture {:mvn/version "0.3.3"}}}
+
+  ;; ---------------------------------------------------
   ;; Development environment
   ;; Aliases work with Clojure CLI -M -X or -T execution options
 
@@ -64,7 +71,7 @@
   :dev/reloaded
   {:extra-paths ["dev" "test"]
    :extra-deps  {djblue/portal                {:mvn/version "0.57.3"}   ; portal data inspector
-                 clj-commons/clj-yaml         {:mvn/version "1.0.27"}   ; portal yaml support (optional)
+                 clj-commons/clj-yaml         {:mvn/version "1.0.28"}   ; portal yaml support (optional)
                  org.clojure/tools.namespace  {:mvn/version "1.5.0"}
                  org.clojure/tools.trace      {:mvn/version "0.8.0"}
                  org.slf4j/slf4j-nop          {:mvn/version "2.0.16"}
@@ -77,23 +84,11 @@
   :dev/reloaded-cljs
   {:extra-paths ["dev" "test"]
    :extra-deps  {djblue/portal             {:mvn/version "0.57.3"}   ; portal data inspector
-                 org.clojure/clojurescript {:mvn/version "1.10.844"}
+                 org.clojure/clojurescript {:mvn/version "1.11.132"}
                  lambdaisland/kaocha-cljs  {:mvn/version "1.5.154"}
                  org.clojure/test.check    {:mvn/version "1.1.1"}}}
 
-  ;; DEPRECATED
-  ;; - only useful for Clojure 1.11.x, not required for Clojure 1.12 onward
-  ;; - alpha state software
-  ;; Latest commit on add-lib3 branch, don't update with :search/outdated
-  :lib/hotload
-  {:extra-deps {org.clojure/tools.deps.alpha
-                {:git/url "https://github.com/clojure/tools.deps.alpha"
-                 :git/sha "e4fb92eef724fa39e29b39cc2b1a850567d490dd"}}}
 
-  ;; Highlight important aspects of error stack trace using ANSI formatting
-  ;; https://github.com/AvisoNovate/pretty
-  :lib/pretty-errors
-  {:extra-deps {io.aviso/pretty {:mvn/version "1.4.4"}}}
 
   ;; Component REPL libraries
   :lib/integrant-repl
@@ -177,7 +172,7 @@
                 cider/cider-nrepl            {:mvn/version "0.50.2"}
                 com.bhauman/rebel-readline   {:mvn/version "0.1.4"}
                 djblue/portal                {:mvn/version "0.57.3"}   ; portal data inspector
-                clj-commons/clj-yaml         {:mvn/version "1.0.27"}   ; portal yaml support (optional)
+                clj-commons/clj-yaml         {:mvn/version "1.0.28"}   ; portal yaml support (optional)
                 org.clojure/tools.namespace  {:mvn/version "1.5.0"}
                 org.clojure/tools.trace      {:mvn/version "0.8.0"}
                 org.slf4j/slf4j-nop          {:mvn/version "2.0.16"}
@@ -453,13 +448,13 @@
   ;; Databases and drivers uses only during development
 
   :lib/next.jdbc
-  {:extra-deps {com.github.seancorfield/next.jdbc {:mvn/version "1.3.939"}}}
+  {:extra-deps {com.github.seancorfield/next.jdbc {:mvn/version "1.3.955"}}}
 
   ;; H2 embedded database
   :database/h2
   {:extra-deps
    {com.h2database/h2                 {:mvn/version "2.3.232"}
-    com.github.seancorfield/next.jdbc {:mvn/version "1.3.939"}}}
+    com.github.seancorfield/next.jdbc {:mvn/version "1.3.955"}}}
   ;; ---------------------------------------------------
 
   ;; ---------------------------------------------------
@@ -484,12 +479,12 @@
 
   :inspect/portal-web
   {:extra-deps {djblue/portal             {:mvn/version "0.57.3"}
-                org.clojure/clojurescript {:mvn/version "1.11.60"}}
+                org.clojure/clojurescript {:mvn/version "1.11.132"}}
    :main-opts  ["--main" "cljs.main"]}
 
   :inspect/portal-node
   {:extra-deps {djblue/portal             {:mvn/version "0.57.3"}
-                org.clojure/clojurescript {:mvn/version "1.11.60"}}
+                org.clojure/clojurescript {:mvn/version "1.11.132"}}
    :main-opts  ["--main" "cljs.main" "-re" "node"]}
 
   ;; Morse - https://github.com/nubank/morse
@@ -504,7 +499,7 @@
   ;; Flowstorm, a tracing debugger
   ;; https://github.com/jpmonettas/flow-storm-debugger
   :lib/flowstorm
-  {:extra-deps {com.github.flow-storm/flow-storm-dbg {:mvn/version "3.17.3"}}}
+  {:extra-deps {com.github.flow-storm/flow-storm-dbg {:mvn/version "3.17.4"}}}
 
   ;; Suggested FlowStorm approach.
   ;; Use patched Clojure compiler which instruments all evaluations
@@ -512,7 +507,7 @@
   :lib/clojurestorm
   {:classpath-overrides {org.clojure/clojure nil}
    :extra-deps {com.github.flow-storm/clojure {:mvn/version "1.12.0"}
-                com.github.flow-storm/flow-storm-dbg {:mvn/version "3.17.3"}}
+                com.github.flow-storm/flow-storm-dbg {:mvn/version "3.17.4"}}
    ;; Optionally add jvm-opt to manage instrumentation:
    ;; -Dclojure.storm.instrumentOnlyPrefixes=YOUR_INSTRUMENTATION_STRING"
    :jvm-opts ["-Dclojure.storm.instrumentEnable=true"]}
