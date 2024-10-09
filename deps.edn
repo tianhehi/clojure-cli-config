@@ -51,6 +51,16 @@
                       djblue/portal {:mvn/version "0.57.3"}
                       vvvvalvalval/scope-capture {:mvn/version "0.3.3"}}}
 
+  :moon/new
+  {:replace-deps {io.github.seancorfield/deps-new
+                  {:git/tag "v0.8.0" :git/sha "2f96530"}
+                  io.github.tianhehi/moon-template
+                  {:git/tag "v0.1" :git/sha "563e01a"}}
+   :exec-fn      org.corfield.new/create
+   :exec-args    {:template tianhehi/moon-template
+                  ;; :name wukong
+                  }}
+
   ;; ---------------------------------------------------
   ;; Development environment
   ;; Aliases work with Clojure CLI -M -X or -T execution options
@@ -359,7 +369,7 @@
   ;; clojure -M:lib/java17-source
   :src/java17
   {:extra-deps
-   {openjdk/java-sources {:local/root "/usr/lib/jvm/openjdk-17/lib/src.zip"}}}
+   {openjdk/java-sources {:local/root "/opt/homebrew/opt/java/libexec/openjdk.jdk/Contents/Home/lib/src.zip"}}}
 
   ;; Clojure core Java source code in src/jvm/clojure/lang/
   :src/clojure

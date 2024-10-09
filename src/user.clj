@@ -9,6 +9,7 @@
             [clj-commons.format.table]))
 
 (add-tap #'portal.api/submit)
+(clj-commons.pretty.repl/install-pretty-exceptions)
 
 (defn visualize-portal []
   (portal.api/open {:app false
@@ -58,6 +59,11 @@
         total (/ (.getMax u) 1e6)]
     (format "Used: %.0f/%.0f MB (%.0f%%)" used total (/ used total 0.01))))
 
+(defn reflect-member-name [obj]
+  (-> obj
+      rf/reflect
+      :members
+      (as-> $ (map :name $))))
 
 
 
